@@ -1,9 +1,17 @@
+/*
+ *Description: Create vector of student struct, storing name, ID, and GPA.
+ *Use commands to manage program and database.
+ *Name: Shree Sai Narayan Medisetti
+ *Date:9/29/2025
+ */
+
 #include <iostream>
 #include <cstring>
 #include <vector>
 
 using namespace std;
 
+// Create student struct
 struct student {
   char firstName[81];
   char lastName[81];
@@ -11,12 +19,14 @@ struct student {
   float gpa;
 };
 
+// Initiate functions
 void addStu(vector<student*>& studentList);
 void printList(vector<student*>& studentList);
 void deleteStu(vector<student*>& studentList);
 
 int main() {
-  
+
+  // Declare variables
   vector<student*> studentList;
   char command[81];
 
@@ -24,7 +34,8 @@ int main() {
   char PRINT[] = "PRINT";
   char DELETE[] = "DELETE";
   char QUIT[] = "QUIT";
-  
+
+  // Prompting loop
   while (true) {
   
     cout << "Enter a command: ";
@@ -41,10 +52,10 @@ int main() {
     }
   }
   
-  return 0;
-  
+  return 0; 
 }
 
+// Add student to the list and ask for name, ID, GPA
 void addStu(vector<student*>& studentList) {
   student* newStudent = new student();
   char first[81];
@@ -72,6 +83,7 @@ void addStu(vector<student*>& studentList) {
   studentList.push_back(newStudent);
 }
 
+// Loop through vector and print student details
 void printList(vector<student*>& studentList) {
   for (int i = 0; i < studentList.size(); i++) {
     student* stu = studentList.at(i);
@@ -82,8 +94,10 @@ void printList(vector<student*>& studentList) {
   }
 }
 
+// Loop through vector and delete student with given ID
 void deleteStu(vector<student*>& studentList) {
   int id;
+  int index;
   cout << "Confirm student ID: ";
   cin >> id;
 
@@ -91,8 +105,10 @@ void deleteStu(vector<student*>& studentList) {
     student* stu = studentList.at(i);
     if (stu->id == id) {
       delete stu;
+      index = i;
       stu = nullptr;
       studentList.shrink_to_fit();
     }
-  } 
+  }
+  studentList.erase(studentList.begin() + index);
 }
