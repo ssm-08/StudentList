@@ -8,6 +8,7 @@
 #include <iostream>
 #include <cstring>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -90,7 +91,7 @@ void printList(vector<student*>& studentList) {
     cout << stu->firstName << " ";
     cout << stu->lastName << ", ";
     cout << stu->id << ", ";
-    cout << stu->gpa << endl;
+    cout << round(stu->gpa * 100)/100 << endl;
   }
 }
 
